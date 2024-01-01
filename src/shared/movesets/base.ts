@@ -1,4 +1,4 @@
 import { CreateMoveset } from "@rbxts/wcs";
-import { Attack } from "shared/skills/Attack";
+import { FireBallSkill } from "shared/skills/FirebalSkilll";
 
-export = CreateMoveset("Base", [Attack]);
+export = CreateMoveset("Base", [FireBallSkill]);

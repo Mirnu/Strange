@@ -2,14 +2,14 @@ import { Players, Workspace } from "@rbxts/services";
 import { Character } from "@rbxts/wcs";
 
 export const LocalPlayer = Players.LocalPlayer;
-export const CurrentCamera = Workspace.CurrentCamera;
+export const CurrentCamera = Workspace.CurrentCamera!;
 
-export const GetCharacterModel = () => {
-	return (LocalPlayer.Character ?? LocalPlayer.CharacterAdded.Wait()[0]) as CharacterModel;
+export const GetCharacterModel = (player: Player) => {
+	return (player.Character ?? player.CharacterAdded.Wait()[0]) as CharacterModel;
 };
 
-export const GetCharacterCFrame = () => {
-	return GetCharacterModel().HumanoidRootPart.CFrame;
+export const GetCharacterCFrame = (player: Player) => {
+	return GetCharacterModel(player).HumanoidRootPart.CFrame;
 };
 
 export const GetCurrentWCS_Character = () => {

@@ -6,6 +6,9 @@ interface ReplicatedStorage extends Instance {
 					circle: ParticleEmitter;
 				};
 			};
+			Combustion: Part & {
+				Attachment: Attachment;
+			};
 		};
 	};
 	TS: Folder & {

@@ -1,5 +1,5 @@
 import { Controller, OnStart, OnInit } from "@flamework/core";
-import { ReplicatedStorage, UserInputService } from "@rbxts/services";
+import { ReplicatedStorage, UserInputService, Workspace } from "@rbxts/services";
 import { CreateClient } from "@rbxts/wcs";
 import { GetCurrentWCS_Character } from "shared/Utils";
 import { Bindles } from "shared/decorators/BindleDecorator";
@@ -12,8 +12,12 @@ export class PlayerController implements OnStart {
 			if (gameProcessed) return;
 
 			const character = GetCurrentWCS_Character();
-			const skill = Bindles.get(input.KeyCode);
-			if (skill !== undefined) character?.GetSkillFromConstructor(skill)?.Start({});
+			const skillConstructor = Bindles.get(input.KeyCode);
+			if (skillConstructor !== undefined) {
+				const skill = character?.GetSkillFromConstructor(skillConstructor);
+				print(skill);
+				skill?.Start([Workspace.CurrentCamera?.CFrame.LookVector]);
+			}
 		});
 	}
 
