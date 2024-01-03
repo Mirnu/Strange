@@ -3,20 +3,19 @@ import { Character, Skill, SkillDecorator } from "@rbxts/wcs";
 import { ShakeCamera } from "shared/classes/ShakeCamera";
 import { BindleDecorator } from "shared/decorators/BindleDecorator";
 import { Stun } from "shared/statusEffects/stun";
-import { FireBall } from "types/Skills";
 @SkillDecorator
 @BindleDecorator(Enum.KeyCode.E)
 export class FireBallSkill extends Skill {
-	public DamageContainer = this.CreateDamageContainer(5);
+	public DamageContainer = this.CreateDamageContainer(20);
 	private ballRunned?: thread;
 
 	protected MutualExclusives = [Stun];
 	protected OnStartServer(params: unknown[]): void {
 		const characterModel = this.Character.Instance as CharacterModel;
-		const lookVector = params[0] as Vector3;
+		const lookVector = (params[0] as CFrame).LookVector;
 		this.ApplyCooldown(5);
 
-		const direction = characterModel.HumanoidRootPart.CFrame.add(lookVector.mul(100));
+		const direction = characterModel.HumanoidRootPart.CFrame.add(lookVector.mul(1000));
 		const ball = this.createBall(characterModel);
 		this.handleTouched(ball, characterModel);
 		this.ballRunned = task.delay(1, () => this.runBall(ball, direction));

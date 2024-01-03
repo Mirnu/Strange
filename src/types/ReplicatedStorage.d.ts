@@ -1,14 +1,9 @@
 interface ReplicatedStorage extends Instance {
 	Prefabs: Folder & {
 		Skills: Folder & {
-			FireBall: Part & {
-				Attachment: Attachment & {
-					circle: ParticleEmitter;
-				};
-			};
-			Combustion: Part & {
-				Attachment: Attachment;
-			};
+			FireBall: FireBall;
+			Combustion: Combustion;
+			Nuclear: Nuclear;
 		};
 	};
 	TS: Folder & {

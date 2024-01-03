@@ -15,8 +15,7 @@ export class PlayerController implements OnStart {
 			const skillConstructor = Bindles.get(input.KeyCode);
 			if (skillConstructor !== undefined) {
 				const skill = character?.GetSkillFromConstructor(skillConstructor);
-				print(skill);
-				skill?.Start([Workspace.CurrentCamera?.CFrame.LookVector]);
+				skill?.Start([Workspace.CurrentCamera?.CFrame]);
 			}
 		});
 	}
